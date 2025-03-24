@@ -46,25 +46,24 @@ Taskly is built to simulate a real-world task management system where administra
 
    npm start
 
-This command starts the development server. Open http://localhost:3000 to view the application in your browser.
+   This command starts the development server. Open http://localhost:3000 to view the application in your browser.
 
 ## Usage
 
 **Login:**
-
 On load, the application displays a login screen. Use the credentials from the pre-populated local storage (for admin or employee). For example:
 Admin: a1@gg.com
 Employee: e1@gg.com (or others from the local storage data)
 
 **Admin Dashboard:**
 
--Task Management: Create tasks using the form in the dashboard. On task creation, the selected employee’s task list and task counts update.
--Activity Panels: View user task statistics and activity logs with smooth drag scrolling.
+- **Task Management:** Create tasks using the form in the dashboard. On task creation, the selected employee’s task list and task counts update.
+- **Activity Panels:** View user task statistics and activity logs with smooth drag scrolling.
 
 **Employee Dashboard:**
 
--View your assigned tasks and their statuses.
--Accept or decline tasks using the provided interface.
+- **View your assigned tasks and their statuses.**
+- **Accept or decline tasks using the provided interface.**
 
 ## Future Improvements
 
