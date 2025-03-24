@@ -32,7 +32,7 @@ Taskly is built to simulate a real-world task management system where administra
 
 1. **Clone the Repository:**
 
-   ```bash
+   ```jsx
    git clone https://github.com/yourusername/taskly.git
    cd taskly
 
@@ -40,10 +40,14 @@ Taskly is built to simulate a real-world task management system where administra
 
 2. **Install Dependencies:**
 
-Make sure you have Node.js installed. Then run: npm install
+Make sure you have Node.js installed. Then run:
+
+```jsx
+npm install
+```
 
 3. **Run the Application:**
-   ```bash
+   ```jsx
    npm start
    ```
    This command starts the development server. Open http://localhost:3000 to view the application in your browser.
