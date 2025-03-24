@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  color: #fff;
+}
+body {
+  background-color: rgb(20, 20, 20);
+}
+#tasklist::-webkit-scrollbar {
+  background-color: transparent;
+  height: 5px;
+}
+#tasklist::-webkit-scrollbar-thumb {
+  background-color: rgb(143, 143, 143);
+  border-radius: 50px;
+}
+
+div.scrollbar-hide {
+  overflow-y: scroll !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+div.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
