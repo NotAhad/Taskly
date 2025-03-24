@@ -99,6 +99,7 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+```
 
 2. Persistent Authentication Without Backend
    Problem: Since the project does not have a backend, keeping users logged in across page reloads was challenging.
@@ -179,4 +180,7 @@ Now, users cannot create incomplete tasks.
 - **Enhanced Animations:** Incorporate GSAP animations for smooth transitions and interactive feedback.
 - **Accessibility Enhancements:** Add keyboard navigation support and further ARIA attributes.
 - **Backend Integration:** Replace local storage with a backend API for user authentication and persistent task management.
+
+```
+
 ```
