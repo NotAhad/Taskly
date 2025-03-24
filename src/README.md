@@ -51,9 +51,11 @@ Taskly is built to simulate a real-world task management system where administra
 ## Usage
 
 **Login:**
-On load, the application displays a login screen. Use the credentials from the pre-populated local storage (for admin or employee). For example:
-Admin: a1@gg.com
-Employee: e1@gg.com (or others from the local storage data)
+
+- **On load, the application displays a login screen. Use the credentials from the pre-populated local storage (for admin or employee)**
+- **Admin:** a1@gg.com
+- **Employee:** e1@gg.com (or others from the local storage data)
+- **Password: 123**
 
 **Admin Dashboard:**
 
