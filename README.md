@@ -69,33 +69,36 @@ Taskly is built to simulate a real-world task management system where administra
 
 ## Challenges and Solutions
 
-1. State Management with Context API
-   Problem: Initially, managing authentication state and user data across multiple components was cumbersome. Prop drilling made it difficult to maintain a clean architecture.
+### 1. State Management with Context API
 
-Solution: I implemented the Context API to create a global authentication state. This allowed the app to manage user sessions efficiently while keeping the components decoupled.
+**Problem:**  
+Managing authentication state and user data across multiple components was becoming cumbersome due to prop drilling.
 
-Code Example (AuthProvider.js):
+**Solution:**  
+Implemented the **Context API** to create a global authentication state. This allowed efficient management of user sessions and eliminated the need for passing props through several layers.
 
-jsx
-Copy
-Edit
+**Example (AuthProvider.js):**
+
+```jsx
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
-useEffect(() => {
-const storedUsers = JSON.parse(localStorage.getItem("userData")) || [];
-setUserData(storedUsers);
-}, []);
+  useEffect(() => {
+    // Initialize local storage if needed and retrieve employee data
+    const { employees } = getLocalStorage();
+    setUserData(employees);
+  }, []);
 
-return (
-<AuthContext.Provider value={[userData, setUserData]}>
-{children}
-</AuthContext.Provider>
-);
+  return (
+    <AuthContext.Provider value={[userData, setUserData]}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
-This eliminated the need to pass props manually through multiple components.
+
+export default AuthProvider;
 
 2. Persistent Authentication Without Backend
    Problem: Since the project does not have a backend, keeping users logged in across page reloads was challenging.
@@ -176,3 +179,4 @@ Now, users cannot create incomplete tasks.
 - **Enhanced Animations:** Incorporate GSAP animations for smooth transitions and interactive feedback.
 - **Accessibility Enhancements:** Add keyboard navigation support and further ARIA attributes.
 - **Backend Integration:** Replace local storage with a backend API for user authentication and persistent task management.
+```
