@@ -43,9 +43,10 @@ Taskly is built to simulate a real-world task management system where administra
 Make sure you have Node.js installed. Then run: npm install
 
 3. **Run the Application:**
-
-npm start
-This command starts the development server. Open http://localhost:3000 to view the application in your browser.
+   ```bash
+   npm start
+   ```
+   This command starts the development server. Open http://localhost:3000 to view the application in your browser.
 
 ## Usage
 
@@ -111,8 +112,6 @@ I used localStorage to store login sessions and retrieve them on app load.
 **Example (App.js - useEffect to load session data):**
 
 ```jsx
-Copy;
-Edit;
 useEffect(() => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if (loggedInUser) {
@@ -134,8 +133,6 @@ I implemented mouse-drag scrolling to enable smooth, natural scrolling.
 **Example (AdminInsight.js - handling drag scrolling):**
 
 ```jsx
-Copy;
-Edit;
 const handleMouseDown = (e) => {
   e.preventDefault();
   activeContainerRef.current = e.currentTarget;
@@ -160,8 +157,6 @@ I used functional updates to ensure the latest state was used while updating tas
 **Example (EmployeeDashboard.js - updating task state safely):**
 
 ```jsx
-Copy;
-Edit;
 setUserData((prevUserData) =>
   prevUserData.map((user) =>
     user.email === authData.data.email ? { ...user, tasks: updatedTasks } : user
@@ -182,8 +177,6 @@ I implemented real-time form validation with controlled inputs.
 **Example (CreateTask.js - Preventing invalid submissions):**
 
 ```jsx
-Copy;
-Edit;
 if (!taskTitle || !taskDescription || !taskDate || !assignTo || !category) {
   setError("All fields are required.");
   return;
@@ -197,7 +190,3 @@ Now, users cannot create incomplete tasks.
 - **Enhanced Animations:** Incorporate GSAP animations for smooth transitions and interactive feedback.
 - **Accessibility Enhancements:** Add keyboard navigation support and further ARIA attributes.
 - **Backend Integration:** Replace local storage with a backend API for user authentication and persistent task management.
-
-```
-
-```
