@@ -8,6 +8,7 @@ Taskly is a dynamic and user-friendly role-based task management web application
 - [Features](#features)
 - [Installation & Setup](#installation--setup)
 - [Usage](#usage)
+- [Challenges and Solutions](#challenges--solutions)
 - [Future Improvements](#future-improvements)
 
 ## Overview
@@ -40,16 +41,18 @@ Taskly is built to simulate a real-world task management system where administra
 
 2. **Install Dependencies:**
 
-Make sure you have Node.js installed. Then run:
+   Make sure you have Node.js installed. Then run:
 
-```jsx
-npm install
-```
+   ```jsx
+   npm install
+   ```
 
 3. **Run the Application:**
+
    ```jsx
    npm start
    ```
+
    This command starts the development server. Open http://localhost:3000 to view the application in your browser.
 
 ## Usage
@@ -71,7 +74,7 @@ npm install
 - **View your assigned tasks and their statuses.**
 - **Accept or decline tasks using the provided interface.**
 
-## Challenges and Solutions
+## Challenges & Solutions
 
 ### 1. State Management with Context API
 
