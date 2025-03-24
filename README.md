@@ -40,13 +40,12 @@ Taskly is built to simulate a real-world task management system where administra
 
 2. **Install Dependencies:**
 
-   Make sure you have Node.js installed. Then run: npm install
+Make sure you have Node.js installed. Then run: npm install
 
 3. **Run the Application:**
 
-   npm start
-
-   This command starts the development server. Open http://localhost:3000 to view the application in your browser.
+npm start
+This command starts the development server. Open http://localhost:3000 to view the application in your browser.
 
 ## Usage
 
@@ -101,78 +100,96 @@ const AuthProvider = ({ children }) => {
 export default AuthProvider;
 ```
 
-2. Persistent Authentication Without Backend
-   Problem: Since the project does not have a backend, keeping users logged in across page reloads was challenging.
+### 2. Persistent Authentication Without Backend
 
-Solution: I used localStorage to store login sessions and retrieve them on app load.
+**Problem:**
+Since the project does not have a backend, keeping users logged in across page reloads was challenging.
 
-Code Example (App.js - useEffect to load session data):
+**Solution:**
+I used localStorage to store login sessions and retrieve them on app load.
 
-jsx
-Copy
-Edit
+**Example (App.js - useEffect to load session data):**
+
+```jsx
+Copy;
+Edit;
 useEffect(() => {
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-if (loggedInUser) {
-setAuthData(loggedInUser);
-}
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (loggedInUser) {
+    setAuthData(loggedInUser);
+  }
 }, []);
+```
+
 This ensured that users remained logged in even after refreshing the page.
 
-3. Drag Scrolling for Smooth User Experience
-   Problem: The default scrollbar in the admin activity panel made navigation clunky.
+### 3. Drag Scrolling for Smooth User Experience
 
-Solution: I implemented mouse-drag scrolling to enable smooth, natural scrolling.
+**Problem:**
+The default scrollbar in the admin activity panel made navigation clunky.
 
-Code Example (AdminInsight.js - handling drag scrolling):
+**Solution:**
+I implemented mouse-drag scrolling to enable smooth, natural scrolling.
 
-jsx
-Copy
-Edit
+**Example (AdminInsight.js - handling drag scrolling):**
+
+```jsx
+Copy;
+Edit;
 const handleMouseDown = (e) => {
-e.preventDefault();
-activeContainerRef.current = e.currentTarget;
-startYRef.current = e.clientY;
-initialScrollTopRef.current = e.currentTarget.scrollTop;
+  e.preventDefault();
+  activeContainerRef.current = e.currentTarget;
+  startYRef.current = e.clientY;
+  initialScrollTopRef.current = e.currentTarget.scrollTop;
 
-document.addEventListener("mousemove", handleMouseMove);
-document.addEventListener("mouseup", handleMouseUp);
+  document.addEventListener("mousemove", handleMouseMove);
+  document.addEventListener("mouseup", handleMouseUp);
 };
+```
+
 This allowed users to drag the activity panel effortlessly.
 
-4. Task Management State Updates
-   Problem: When updating task statuses, the UI did not immediately reflect changes due to React’s asynchronous state updates.
+### 4. Task Management State Updates
 
-Solution: I used functional updates to ensure the latest state was used while updating tasks.
+**Problem:**
+When updating task statuses, the UI did not immediately reflect changes due to React’s asynchronous state updates.
 
-Code Example (EmployeeDashboard.js - updating task state safely):
+**Solution:**
+I used functional updates to ensure the latest state was used while updating tasks.
 
-jsx
-Copy
-Edit
+**Example (EmployeeDashboard.js - updating task state safely):**
+
+```jsx
+Copy;
+Edit;
 setUserData((prevUserData) =>
-prevUserData.map((user) =>
-user.email === authData.data.email
-? { ...user, tasks: updatedTasks }
-: user
-)
+  prevUserData.map((user) =>
+    user.email === authData.data.email ? { ...user, tasks: updatedTasks } : user
+  )
 );
+```
+
 This approach prevented state inconsistencies.
 
-5. Dynamic Form Validation for Task Creation
-   Problem: Initially, users could submit empty or incomplete forms, leading to data integrity issues.
+### 5. Dynamic Form Validation for Task Creation
 
-Solution: I implemented real-time form validation with controlled inputs.
+**Problem:**
+Initially, users could submit empty or incomplete forms, leading to data integrity issues.
 
-Code Example (CreateTask.js - Preventing invalid submissions):
+**Solution:**
+I implemented real-time form validation with controlled inputs.
 
-jsx
-Copy
-Edit
+**Example (CreateTask.js - Preventing invalid submissions):**
+
+```jsx
+Copy;
+Edit;
 if (!taskTitle || !taskDescription || !taskDate || !assignTo || !category) {
-setError("All fields are required.");
-return;
+  setError("All fields are required.");
+  return;
 }
+```
+
 Now, users cannot create incomplete tasks.
 
 ## Future Improvements
