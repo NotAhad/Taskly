@@ -67,6 +67,110 @@ Taskly is built to simulate a real-world task management system where administra
 - **View your assigned tasks and their statuses.**
 - **Accept or decline tasks using the provided interface.**
 
+## Challenges and Solutions
+
+1. State Management with Context API
+   Problem: Initially, managing authentication state and user data across multiple components was cumbersome. Prop drilling made it difficult to maintain a clean architecture.
+
+Solution: I implemented the Context API to create a global authentication state. This allowed the app to manage user sessions efficiently while keeping the components decoupled.
+
+Code Example (AuthProvider.js):
+
+jsx
+Copy
+Edit
+export const AuthContext = createContext();
+
+const AuthProvider = ({ children }) => {
+const [userData, setUserData] = useState([]);
+
+useEffect(() => {
+const storedUsers = JSON.parse(localStorage.getItem("userData")) || [];
+setUserData(storedUsers);
+}, []);
+
+return (
+<AuthContext.Provider value={[userData, setUserData]}>
+{children}
+</AuthContext.Provider>
+);
+};
+This eliminated the need to pass props manually through multiple components.
+
+2. Persistent Authentication Without Backend
+   Problem: Since the project does not have a backend, keeping users logged in across page reloads was challenging.
+
+Solution: I used localStorage to store login sessions and retrieve them on app load.
+
+Code Example (App.js - useEffect to load session data):
+
+jsx
+Copy
+Edit
+useEffect(() => {
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+if (loggedInUser) {
+setAuthData(loggedInUser);
+}
+}, []);
+This ensured that users remained logged in even after refreshing the page.
+
+3. Drag Scrolling for Smooth User Experience
+   Problem: The default scrollbar in the admin activity panel made navigation clunky.
+
+Solution: I implemented mouse-drag scrolling to enable smooth, natural scrolling.
+
+Code Example (AdminInsight.js - handling drag scrolling):
+
+jsx
+Copy
+Edit
+const handleMouseDown = (e) => {
+e.preventDefault();
+activeContainerRef.current = e.currentTarget;
+startYRef.current = e.clientY;
+initialScrollTopRef.current = e.currentTarget.scrollTop;
+
+document.addEventListener("mousemove", handleMouseMove);
+document.addEventListener("mouseup", handleMouseUp);
+};
+This allowed users to drag the activity panel effortlessly.
+
+4. Task Management State Updates
+   Problem: When updating task statuses, the UI did not immediately reflect changes due to React’s asynchronous state updates.
+
+Solution: I used functional updates to ensure the latest state was used while updating tasks.
+
+Code Example (EmployeeDashboard.js - updating task state safely):
+
+jsx
+Copy
+Edit
+setUserData((prevUserData) =>
+prevUserData.map((user) =>
+user.email === authData.data.email
+? { ...user, tasks: updatedTasks }
+: user
+)
+);
+This approach prevented state inconsistencies.
+
+5. Dynamic Form Validation for Task Creation
+   Problem: Initially, users could submit empty or incomplete forms, leading to data integrity issues.
+
+Solution: I implemented real-time form validation with controlled inputs.
+
+Code Example (CreateTask.js - Preventing invalid submissions):
+
+jsx
+Copy
+Edit
+if (!taskTitle || !taskDescription || !taskDate || !assignTo || !category) {
+setError("All fields are required.");
+return;
+}
+Now, users cannot create incomplete tasks.
+
 ## Future Improvements
 
 - **Enhanced Animations:** Incorporate GSAP animations for smooth transitions and interactive feedback.
